@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "guarded-agentic-rag"
+version = "0.1.0"
+description = "Reference agentic RAG with planner/worker fan-out, OWASP-mapped guardrails, self-repairing validation and an evaluation harness (LangGraph)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Nguyen Manh Cuong" }]
+keywords = ["rag", "agentic-rag", "langgraph", "llm", "guardrails", "prompt-injection", "owasp", "llm-evaluation"]
+dependencies = ["langgraph>=0.3", "openai>=1.40"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+grag = "guarded_rag.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/guarded_rag"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
